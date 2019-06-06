@@ -4,14 +4,14 @@ String input = "Where are we?,How are you doing?,How do we change our existing s
 String [] data = split(input,',');
 
 int amount = data.length;
-int backgroundSpeed = 20;
-textSize(38); // was 50
+int backgroundSpeed = .0020;
+int textHeight = 36 // was 50
+
 
 
 Drop[] drops = new Drop[amount];
-
+textSize(textHeight);
 void setup() {
-  //size(1080, 720);
   size(window.innerWidth, window.innerHeight, P2D);
   textAlign(CENTER);
   for (int i = 0; i < drops.length; i++) {
@@ -39,13 +39,13 @@ void draw() {
 
   background(pathR,pathG,pathB);
   pathR=centerR+R*sin(a);
-  a=a+.0001*backgroundSpeed;
+  a=a+backgroundSpeed;
 
   pathG=centerG+G*sin(a1);
-  a1=a1+.0001*backgroundSpeed;
+  a1=a1+backgroundSpeed;
 
   pathB=centerB+B*sin(a2);
-  a2=a2+.0001*backgroundSpeed;
+  a2=a2+backgroundSpeed;
 
   for (int i = 0; i < drops.length; i++) {
     drops[i].fall();
@@ -53,57 +53,44 @@ void draw() {
   }
 }
 
-//==============================================
-//==============================================
-//==============================================
-
 void addText(String newQ)
 {
   data = append(data, newQ);
   console.log(data.toString());
   drop = append(drops, new Drop(newQ))
-  //for (int i = 0; i < drops.length; i++) {
-  //  drops[i] = new Drop(data[i%data.length]); //assign data to each drop
-  //}
 }
-
-
 
 class Drop {
   float x;
   float y;
-  float z;
-  float a;
-  float len;
+  float pad;
   float yspeed;
   String textHolder = "";
 
   Drop(String textTemp) {
     if (textWidth(textTemp) < width) {
-       a  = textWidth(textTemp)/2
+       pad  = textWidth(textTemp)/2
     } else{
-       a = width/2
+       pad = width/2
     }
-    x  = random(a, width-a);
+    x  = random(pad, width-pad);
     y  = random(-50, -5);
-    len = map(z, 0, 20, 10, 20);
     yspeed = random(0, uLim); //
     textHolder = textTemp;
   }
 
   void fall() {
     y = y + yspeed;
-    if (y > height) {
-      x  = random(a, width-a);
-      y = random(-100, -50);
+    if (y > height + textHeight) {
+      x  = random(pad, width-pad);
+      //y = random(-100, -50);
+      y = 0;
       yspeed = random(0, uLim); //
     }
   }
 
   void show() {
-    float thick = map(z, 0, 20, 1, 3);
-    fill(255);
+    fill(255,50);
     text(textHolder, x, y, y+len);
   }
 }
-//
