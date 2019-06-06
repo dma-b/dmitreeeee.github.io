@@ -5,7 +5,7 @@ String [] data = split(input,',');
 
 int amount = data.length;
 int backgroundSpeed = 20;
-textSize(50);
+textSize(30); // was 50
 
 
 Drop[] drops = new Drop[amount];
