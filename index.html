@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello Web - Processing.js Test</title>
+    <script src="processing.js"></script>
+    <style>
+      canvas {
+       outline: 0px;
+       position: absolute;
+       left: 0px;
+       top: 0px;
+       width: 100%;
+       height: 100%;
+       z-index:-1;
+      }
+      input {
+        width: 100%;
+        border: none;
+        color: #ffffffbb;
+        font-size: 3em;
+        outline-width: 0;
+	outline: none;
+        background-color: #00000000;
+        padding-left: 20px;
+      }
+      input::placeholder{
+        color: #ffffffbb;
+      }
+      .cursor {
+        margin:900px auto 0px auto;
+      	position: relative;
+      }
+      .cursor	i {
+      	position: absolute;
+      	width: 5px;
+      	height: 80%;
+      	background-color: #ffffffbb;
+      	left: 5px;
+      	top: 10%;
+      	animation-name: blink;
+      	animation-duration: 1600ms;
+      	animation-iteration-count: infinite;
+      	opacity: 1;
+      }
+
+
+      @keyframes blink {
+      	from { opacity: 1; }
+      	to { opacity: 0; }
+      }
+    </style>
+</head>
+<body>
+  <div class="cursor">
+    <input type="text" id="youQuery" placeholder="What would you like to ask Utopia?" autofocus>
+  <i></i>
+</div>
+
+     <canvas data-processing-sources="utopia.pde" id="canvas"></canvas>
+
+
+
+
+ </body>
+
+ <script>
+   const node = document.getElementById("youQuery");
+   node.addEventListener("keydown", function(event) {
+     var text = document.getElementById('youQuery').value;
+    if (event.key === "Enter" && text != "") {
+        event.preventDefault();
+        console.log("got input")
+        var canvas = Processing.getInstanceById('canvas');
+        canvas.addText(text);
+        document.getElementById('youQuery').value = ""
+    }
+    });
+ </script>
+ </html>
