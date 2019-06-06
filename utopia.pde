@@ -91,6 +91,6 @@ class Drop {
 
   void show() {
     fill(255,50);
-    text(textHolder, x, y, y+len);
+    text(textHolder, x, y, y);
   }
 }
