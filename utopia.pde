@@ -5,7 +5,7 @@ String [] data = split(input,',');
 
 int amount = data.length;
 int backgroundSpeed = .0020;
-int textHeight = 36 // was 50
+int textHeight = 36; // was 50
 
 
 
@@ -69,9 +69,9 @@ class Drop {
 
   Drop(String textTemp) {
     if (textWidth(textTemp) < width) {
-       pad  = textWidth(textTemp)/2
+       pad  = textWidth(textTemp)/2;
     } else{
-       pad = width/2
+       pad = width/2;
     }
     x  = random(pad, width-pad);
     y  = random(-50, -5);
