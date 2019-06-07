@@ -10,16 +10,15 @@ int textOpacity = 200; //255 is full opacity, 0 is transparent
 
 
 
-
+String [] data = split(input,','); //Takes the input string and turns it into an array of questions
+int amount = data.length;
+Droplet[] drops = new Droplet[amount];
 
 
 void setup() {
   size(window.innerWidth, window.innerHeight, P2D);
   textAlign(CENTER);
   textSize(textHeight);
-  int amount = data.length;
-  String [] data = split(input,','); //Takes the input string and turns it into an array of questions
-  Droplet[] drops = new Droplet[amount];
   for (int i = 0; i < amount; i++) {
     drops[i] = new Droplet(data[i]); //assign data to each drop
   }
